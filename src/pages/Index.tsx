@@ -28,6 +28,21 @@ const Index = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleDownloadResume = () => {
+    // Create a link element and trigger download
+    const link = document.createElement('a');
+    link.href = '/resume.pdf'; // You'll need to add your resume PDF to the public folder
+    link.download = 'Harshitha_Gummadi_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    toast({
+      title: "Download Started",
+      description: "Your resume download has started!",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -35,7 +50,7 @@ const Index = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="text-2xl font-bold text-indigo-600">
-              Harshitha<span className="text-blue-500">.dev</span>
+              Harshitha <span className="text-blue-500">Gummadi</span>
             </div>
             
             <nav className="hidden md:flex space-x-8">
@@ -58,22 +73,31 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="text-blue-600 font-medium mb-4">Hello, I'm</div>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
                 Harshitha<br />
                 <span className="text-indigo-600">Gummadi</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8">Java & Full Stack Developer</p>
+              <p className="text-xl text-gray-600 mb-4">Java & Full Stack Developer</p>
+              <p className="text-lg text-blue-600 font-medium mb-8">
+                Building impactful solutions using Java and Spring Boot.
+              </p>
               <p className="text-gray-600 mb-8 leading-relaxed">
                 Passionate about creating efficient, user-friendly applications with
                 a keen interest in backend development and problem solving.
               </p>
               <div className="flex gap-4">
-                <Button className="bg-blue-600 hover:bg-blue-700">
-                  Contact Me
+                <Button 
+                  onClick={handleDownloadResume}
+                  className="bg-blue-600 hover:bg-blue-700"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Download Resume
                 </Button>
-                <Button variant="outline">
-                  View Projects
+                <Button 
+                  variant="outline"
+                  onClick={() => scrollToSection('contact')}
+                >
+                  Contact Me
                 </Button>
               </div>
             </div>
@@ -169,24 +193,29 @@ const Index = () => {
             </Card>
 
             <Card className="group hover:shadow-xl transition-all duration-300">
-              <div className="h-2 bg-gradient-to-r from-purple-400 to-indigo-400"></div>
+              <div className="h-2 bg-gradient-to-r from-orange-400 to-red-400"></div>
               <CardHeader className="text-center py-8">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Code className="w-8 h-8 text-purple-600" />
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="w-8 h-8 text-orange-600" />
                 </div>
-                <CardTitle className="text-xl text-indigo-600">Code Editor - Online Code Playground</CardTitle>
+                <CardTitle className="text-xl text-indigo-600">Disaster Prediction and Early Warning System</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700 mb-4">
-                  Designed a real-time code editor supporting HTML, CSS, and JavaScript. Integrated live
-                  preview functionality for instant feedback. Added syntax highlighting and a resizable editor for
-                  better UX.
+                  Developed an Early Warning System featuring an ML-powered risk detection engine for cyclones and
+                  earthquakes. Implemented a multi-channel alert system (email and WhatsApp) with location-based user
+                  subscriptions and detailed safety advisories. Utilized Celery with Redis for asynchronous task processing.
                 </p>
                 <div className="mb-4">
                   <strong className="text-sm font-semibold">Tech Stack:</strong>
-                  <p className="text-sm text-gray-600">HTML, CSS, JavaScript</p>
+                  <p className="text-sm text-gray-600">Python, Scikit-learn, Celery, Redis, PostgreSQL, HTML, CSS, JavaScript, NOAA API, Twilio</p>
                 </div>
-                <Button variant="outline" className="w-full text-blue-600 border-blue-600 hover:bg-blue-50">
+                <Button 
+                  variant="outline" 
+                  className="w-full text-blue-600 border-blue-600 hover:bg-blue-50"
+                  onClick={() => window.open('https://github.com/PhantomChillz/DisasterPredictionSystem', '_blank')}
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
                   View on GitHub →
                 </Button>
               </CardContent>
@@ -608,7 +637,7 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-2xl font-bold mb-4">
-                Harshitha <span className="text-blue-300">dev</span>
+                Harshitha <span className="text-blue-300">Gummadi</span>
               </h3>
               <p className="text-indigo-200 mb-4">
                 A passionate Java and Full Stack Developer building creative and efficient solutions.
